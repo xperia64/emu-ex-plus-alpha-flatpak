@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Icon=com.explusalpha.NesEmu
+Exec=nesemu
+Terminal=false
+Type=Application
+Categories=Game;Emulator;
+Name=NES.emu
+GenericName=NES/Famicom Emulator
+Comment=An NES/Famicom Emulator

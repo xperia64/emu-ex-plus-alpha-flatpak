@@ -1,0 +1,29 @@
+diff --git a/imagine/bundle/all/makeAll-linux-x86_64-static.sh b/imagine/bundle/all/makeAll-linux-x86_64-static.sh
+index 7c11a4bd..67679c48 100644
+--- a/imagine/bundle/all/makeAll-linux-x86_64-static.sh
++++ b/imagine/bundle/all/makeAll-linux-x86_64-static.sh
+@@ -1,4 +1,6 @@
+ makefilesToRun='
++	src/boost/linux-x86_64.mk
++
+ 	src/libpng/linux-x86_64.mk
+	
+ 	src/libarchive/linux-x86_64.mk
+diff --git a/imagine/bundle/all/src/boost/linux-x86_64.mk b/imagine/bundle/all/src/boost/linux-x86_64.mk
+new file mode 100644
+index 00000000..0777ff24
+--- /dev/null
++++ b/imagine/bundle/all/src/boost/linux-x86_64.mk
+@@ -0,0 +1,12 @@
++-include config.mk
++
++RELEASE := 1
++tempDir = /tmp/imagine-bundle/$(pkgName)
++buildDir = $(tempDir)/build/linux-x86_64
++buildPath = $(buildDir)
++include $(IMAGINE_PATH)/make/linux-x86_64-gcc.mk
++
++installDir = $(IMAGINE_SDK_PATH)/$(IMAGINE_SDK_PLATFORM)
++
++include common.mk
++
