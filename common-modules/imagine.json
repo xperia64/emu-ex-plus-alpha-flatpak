@@ -1,0 +1,28 @@
+{
+    "name": "imagine",
+    "build-options": {
+        "env": {
+            "IMAGINE_SDK_PATH": "/app/imagine-sdk",
+            "V": "1"
+        }
+    },
+    "buildsystem": "simple",
+    "build-commands": [
+        "export IMAGINE_PATH=$(pwd)/imagine; cd $IMAGINE_PATH/bundle/all; bash makeAll-linux-x86_64-static.sh install",
+        "export IMAGINE_PATH=$(pwd)/imagine; cd $IMAGINE_PATH; make -f linux-x86_64-release.mk install"
+    ],
+    "sources": [
+        {
+            "type": "git",
+            "url": "https://github.com/Rakashazi/emu-ex-plus-alpha.git",
+            "commit": "dc7adaaf060aa46563216c4997aee3d7e4ede17e"
+        },
+        {
+            "type": "patch",
+            "path": "build-boost.patch"
+        }
+    ],
+    "cleanup": [
+        "/imagine-sdk"
+    ]
+}

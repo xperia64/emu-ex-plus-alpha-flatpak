@@ -23,63 +23,9 @@ build-options:
     V: '1'
 modules:
   # Imagine requires bluez
-  - name: bluez
-    config-opts:
-      - --enable-library
-      - --disable-manpages
-      - --disable-udev
-      - --disable-tools
-      - --disable-cups
-      - --disable-monitor
-      - --disable-client
-      - --disable-systemd
-      - --disable-a2dp
-      - --disable-avrcp
-      - --disable-network
-      - --disable-obex
-      - --disable-bap
-      - --disable-mcp
-      - --with-dbusconfdir=/app/etc
-      - --with-dbussessionbusdir=/app/usr/lib/system-services
-    sources:
-      - type: archive
-        url: https://www.kernel.org/pub/linux/bluetooth/bluez-5.66.tar.xz
-        sha256: 39fea64b590c9492984a0c27a89fc203e1cdc74866086efb8f4698677ab2b574
-        x-checker-data:
-          type: anitya
-          project-id: 10029
-          stable-only: true
-          url-template: https://www.kernel.org/pub/linux/bluetooth/bluez-$version.tar.xz
-    cleanup:
-      - '/include'
-      - '/lib/pkgconfig'
-      - '/share/zsh'
-      - '*.la'
-
-  - name: imagine
-    buildsystem: simple
-    build-commands:
-      - export IMAGINE_PATH=$(pwd)/imagine; cd $IMAGINE_PATH/bundle/all; bash makeAll-linux-x86_64-static.sh install
-      - export IMAGINE_PATH=$(pwd)/imagine; cd $IMAGINE_PATH; make -f linux-x86_64-release.mk install
-    sources:
-      - type: git
-        url: https://github.com/Rakashazi/emu-ex-plus-alpha.git
-        commit: dc7adaaf060aa46563216c4997aee3d7e4ede17e
-      - type: patch
-        path: build-boost.patch
-    cleanup:
-      - '/imagine-sdk'
-
-  - name: EmuFramework
-    buildsystem: simple
-    build-commands:
-      - export IMAGINE_PATH=$(pwd)/imagine; export EMUFRAMEWORK_PATH=$(pwd)/EmuFramework; cd $EMUFRAMEWORK_PATH; make -f linux-x86_64-release.mk install
-    sources:
-      - type: git
-        url: https://github.com/Rakashazi/emu-ex-plus-alpha.git
-        commit: dc7adaaf060aa46563216c4997aee3d7e4ede17e
-    cleanup:
-      - '/imagine-sdk'
+  - common-modules/bluez-5.66.json
+  - common-modules/imagine.json
+  - common-modules/EmuFramework.json
 
   - name: NES.emu
     buildsystem: simple
