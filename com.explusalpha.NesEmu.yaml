@@ -2,7 +2,7 @@ app-id: com.explusalpha.NesEmu
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
-command: nesemu
+command: /app/bin/nesemu
 finish-args:
   # For rendering+controllers
   - --device=all
